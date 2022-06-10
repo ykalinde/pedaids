@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TableQueryRequest extends FormRequest
 {
@@ -24,7 +25,13 @@ class TableQueryRequest extends FormRequest
     public function rules()
     {
         return [
-            "table" => "required|string"
+            "table" => "required|string",
+            "fields" => ["array"],
+            "fields.*" => "string",
+            "conditions" => ["array"],
+            "conditions.*.condition" => ["required", Rule::in(["like","=",">",">=","<","<=","<>"])],
+            "aggregate" => "sometimes",
+            "aggregate.field" => "sometimes"
         ];
     }
 }
