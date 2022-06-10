@@ -1,4 +1,4 @@
-# Testing for Code
+# Documentation
 
 Before you get started, make sure you have the following install
 * PHP 8.0 or higher
