@@ -3,8 +3,33 @@
 Before you get started, make sure you have the following install
 * PHP 8.0 or higher
 * Curl
+* Composer (The PHP package manager)
 
-Navigate to the setup directory and run the following command to serve the api
+
+Navigate to the project directory
+* Install the project dependencies by running the following command
+
+```
+composer install
+```
+* Create a database on your local MySQL installation by running the following query
+  
+```mariadb
+CREATE DATABASE egpaf;
+```
+
+* Configure your MySQL connection properties by editing the ``` .env ``` file in the project root. Modify the following fields to match your MySQL setup
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=egpaf
+DB_USERNAME=root
+DB_PASSWORD=S3cret
+```
+
+
+* Run (serve) the API by running the following command
 
 ```
 php artisan serve
@@ -74,3 +99,14 @@ curl -X POST "http://localhost:8000/api/tables/query" -H "Accept: application/js
 ```
 
 ## Generate Keys
+
+Generate a new key by running the following cURL command
+
+```
+curl -X POST "http://localhost:8000/api/keys/generate"
+```
+
+To disable a particular key, running the following cURL command
+```
+curl -X POST "http://localhost:8000/api/keys/disable" -H "Accept: application/json" -H "Content-Type: application/json" --data '{"key": "UREDNGLWB"}'
+```
