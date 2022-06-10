@@ -69,5 +69,8 @@ To query aggregates, instead of passing the fields property, pass the aggregate 
 
 Run the following cURL command to test the functionality
 ```
-
+curl -X POST "http://localhost:8000/api/tables/query" -H "Accept: application/json" -H "Content-Type: application/json" --data '{"table":"patients","conditions":[{"field":"district",
+"condition":"=","value":"Blantyre"}],"aggregate":{"function":"COUNT","field":"sex"}}'
 ```
+
+## Generate Keys
